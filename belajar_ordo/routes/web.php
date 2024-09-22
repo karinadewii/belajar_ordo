@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ExampleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,12 +18,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// Route untuk /hello yang mengembalikan "Hello World"
-Route::get('/hello', function () {
-    return "Hello World";
-});
+// Route untuk /hello yang menggunakan method 'hello' dari ExampleController
+Route::get('/hello', [ExampleController::class, 'hello']);
 
-// Route untuk /perkalian/{angka} yang mengembalikan angka * 2
-Route::get('/perkalian/{angka}', function ($angka) {
-    return $angka * 2;
-});
+// Route untuk /perkalian/{angka} yang menggunakan method 'perkalian' dari ExampleController
+Route::get('/perkalian/{angka}', [ExampleController::class, 'perkalian']);
