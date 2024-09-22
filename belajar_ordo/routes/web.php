@@ -1,7 +1,7 @@
 <?php
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ExampleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,3 +23,14 @@ Route::get('/hello', [ExampleController::class, 'hello']);
 
 // Route untuk /perkalian/{angka} yang menggunakan method 'perkalian' dari ExampleController
 Route::get('/perkalian/{angka}', [ExampleController::class, 'perkalian']);
+
+Route::get('/tambah', function (Illuminate\Http\Request $request) {
+    $angka1 = $request->query('angka1');
+    $angka2 = $request->query('angka2');
+
+    // Penjumlahan
+    $hasil = $angka1 + $angka2;
+
+    // Hasil penjumlahan
+    return "Hasil penjumlahan: " . $hasil;
+});
