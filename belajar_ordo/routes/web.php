@@ -24,17 +24,20 @@ Route::get('/hello', [ExampleController::class, 'hello']);
 Route::get('/perkalian/{angka}', [ExampleController::class, 'perkalian']);
 
 Route::get('/tambah', function (Request $request) {
-    // Ambil nilai dari query parameter angka1 dan angka2
-    $angka1 = $request->query('angka1');
-    $angka2 = $request->query('angka2');
+    // Validasi input
+    $validatedData = $request->validate([
+        'angka1' => 'required|numeric',
+        'angka2' => 'required|numeric',
+    ]);
 
-    // Lakukan penjumlahan
-    $hasil = null;
-    if ($angka1 !== null && $angka2 !== null) {
-        $hasil = $angka1 + $angka2;
-    }
+    // Nilai dari query parameter angka1 dan angka2
+    $angka1 = $validatedData['angka1'];
+    $angka2 = $validatedData['angka2'];
 
-    // Kembalikan view dengan data
+    // Penjumlahan
+    $hasil = $angka1 + $angka2;
+
+    // View dengan data
     return view('tambah', compact('angka1', 'angka2', 'hasil'));
 });
 
