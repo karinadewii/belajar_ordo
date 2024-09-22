@@ -16,3 +16,13 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+// Route untuk /hello yang mengembalikan "Hello World"
+Route::get('/hello', function () {
+    return "Hello World";
+});
+
+// Route untuk /perkalian/{angka} yang mengembalikan angka * 2
+Route::get('/perkalian/{angka}', function ($angka) {
+    return $angka * 2;
+});
